@@ -8,9 +8,9 @@
     self.login = function(usr, pwd){
       $http.post('login', {usr:usr, pwd:pwd}).success(function(usrs){
         console.log(usrs);
-        delete $scope.loginUser;
-        delete $scope.loginPwd;
         if (usrs.length > 0) {
+          delete $scope.loginUser;
+          delete $scope.loginPwd;
           self.usr = usrs[0].usr;
           $cookies.put('usr', self.usr);
         }
