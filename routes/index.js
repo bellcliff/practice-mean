@@ -7,6 +7,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.post('/login', function(req, res, next){
+  mc.connect('mongodb://localhost:27017/test').then(function(db){
+    return db.collection('user').find(req.body).toArray()
+  }).then(res.json.bind(res)).catch(function(err){next(err)});
+});
+
 router.post('/user', function(req, res, next){
   console.log('user post req body', req.body);
   mc.connect('mongodb://localhost:27017/test').then(function(db){
