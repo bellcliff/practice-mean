@@ -11,8 +11,8 @@
     };
 
     self.logout = function(){
-      $http.get('logout').success(function(){
         self.usr = undefined;
+      $http.get('logout').success(function(){
       })
     }
 
