@@ -4,22 +4,23 @@
 
   angular.module('main', ['ngCookies']).controller('LoginCtrl', function($http, $cookies, $scope){
     var self = this;
-    self.usr = $cookies.get('usr')
     self.login = function(usr, pwd){
-      $http.post('login', {usr:usr, pwd:pwd}).success(function(usrs){
-        console.log(usrs);
-        if (usrs.length > 0) {
-          delete $scope.loginUser;
-          delete $scope.loginPwd;
-          self.usr = usrs[0].usr;
-          $cookies.put('usr', self.usr);
-        }
+      $http.post('login', {usr:usr, pwd:pwd}).success(function(info){
+          self.usr = usr
       });
     };
 
     self.logout = function(){
-      $cookies.remove('usr')
-      self.usr = undefined;
+      $http.get('logout').success(function(){
+        self.usr = undefined;
+      })
     }
+
+    self.check = function(){
+      $http.get('check').success(function(info){
+        self.usr = info.usr;
+      }).catch(function(){});
+    }
+    self.check();
   });
 })()
