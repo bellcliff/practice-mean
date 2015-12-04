@@ -35,5 +35,10 @@
     }
 
     self.check();
+  })
+  .directive('loginDirect', function(){
+    return {
+      templateUrl: 'login.html'
+    }
   });
 })()

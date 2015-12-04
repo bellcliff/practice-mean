@@ -66,16 +66,10 @@ router.delete('/del', function(req, res, next){
         return db.collection('user').deleteOne({_id: new ObjectId(req.session.usr._id)})
       })
       .then(function(info){
-         console.log('del result', info)
          return Q.nfcall(req.session.destroy.bind(req.session))
-                 .then(function(){
-         	   return dbCon.then(function(db){return db.collection('user').find().toArray()})
-                 })
+                 .then(function(){return info})
       })
-      .then(function(info){
-        res.json(info)
-        res.end()
-      })
+      .then(res.json.bind(res))
       .catch(function(err){next(err)});
   }else{
     res.json({msg: 'need login'});
