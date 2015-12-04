@@ -6,13 +6,6 @@
 <script src="libs/angular-cookies/angular-cookies.js"></script>
 </head>
 <body ng-app="main" ng-controller="LoginCtrl as login">
-<h3>Hello {{login.usr || "world"}}!</h3>
-<form ng-show="!login.usr">
-<input ng-model="loginUser">
-<input ng-model="loginPwd">
-<button ng-click="login.login(loginUser, loginPwd)">Login</button>
-</form>
-<button ng-click="login.logout()" ng-show="!!login.usr">Logout</button>
 <script src="app.js"></script>
 </body>
 </html>
